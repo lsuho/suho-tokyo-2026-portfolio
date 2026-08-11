@@ -107,8 +107,9 @@ export function Portfolio() {
       <section className="hero" ref={heroRef}>
         <div className="metroLines" aria-hidden="true"><i /><i /><i /><i /></div>
         <div className="heroCopy">
-          <p className="kicker">CHONNAM NATIONAL UNIVERSITY · AI MAJOR</p>
-          <h1>SUHO<br /><span>IN TOKYO</span></h1>
+          <p className="kicker">SUHO IN TOKYO · JAPAN INTERNSHIP 2026</p>
+          <h1><span className="heroSchool">CHONNAM</span><br /><span className="heroDestination">TO TOKYO</span></h1>
+          <p className="schoolStatement">{isJa ? <>全南大学校 人工知能学部から<br /><strong>東京のインターンシップ現場へ。</strong></> : <>전남대학교 인공지능학부에서<br /><strong>도쿄의 인턴십 현장으로.</strong></>}</p>
           <p className="discipline">ARTIFICIAL INTELLIGENCE <b>×</b> DEVELOPMENT <b>×</b> PROGRAM OPERATIONS</p>
           <div className="heroStatement">I DIDN&apos;T JUST PARTICIPATE.<br /><strong>I HELPED MAKE IT HAPPEN.</strong></div>
           <p className="heroNote">{isJa ? <>システム開発から<br />東京での学生引率まで。</> : <>From building systems<br />to guiding students across Tokyo.</>}</p>
