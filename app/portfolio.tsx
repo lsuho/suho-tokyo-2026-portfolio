@@ -36,14 +36,6 @@ const roles = [
 
 const studentTasks = ["학생별 기업 배치 확인", "출퇴근 정보 정리", "실습일지 작성 현황 확인", "학생 활동 내용 정리", "기업 방문 감상문 작성 지원", "병원 실습 주간 감상문 취합", "한 달간 학생 활동 기록 정리", "인터뷰 동영상 촬영 지원", "최종 제출자료 확인", "학교 및 기업용 설명자료 제작"];
 
-const timeline = [
-  ["JUN 30", "INTERNSHIP START"], ["JUL", "SYSTEM DEVELOPMENT"], ["JUL", "STUDENT MANAGEMENT"],
-  ["JUL 23", "INNOPHYS"], ["JUL 24", "WEB DEVELOPMENT"], ["JUL 29", "イプロスAI 2026 夏"],
-  ["JUL 30", "MONTHLY STUDENT REPORT"], ["JUL 31", "WEB ANIMATION + HOSPITAL REPORT"],
-  ["AUG 03", "YAKULT"], ["AUG 05", "WELLNESS FOOD"], ["AUG 06", "UNIVERSITY VISIT + INTERPRETATION"],
-  ["AUG 07", "CHOSUN UNIVERSITY FINAL PROGRAM"],
-];
-
 const numberStats = [[60, "DAYS IN JAPAN"], [2, "UNIVERSITIES"], [5, "COMPANIES", "+"], [2, "EXHIBITIONS"], [1, "WEB SYSTEM"]] as const;
 
 export function Portfolio() {
@@ -75,7 +67,7 @@ export function Portfolio() {
     <header className="topbar">
       <a className="wordmark" href="#top" onClick={closeMenu}>SUHO <span>/ TOKYO 2026</span></a>
       <nav className={menuOpen ? "navOpen" : ""} aria-label="주요 메뉴">
-        {[['ABOUT','about'],['WORK','work'],['VISITS','visits'],['EXPO','expo'],['TIMELINE','timeline']].map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
+        {[['ABOUT','about'],['WORK','work'],['VISITS','visits'],['EXPO','expo']].map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
       </nav>
       <button className="menuButton" aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
     </header>
@@ -157,11 +149,6 @@ export function Portfolio() {
       <section className="documents section">
         <div className="sectionHeading"><div><p className="eyebrow">DOCUMENTATION</p><h2>SO. MANY.<br />DOCUMENTS.</h2></div><div className="excelJoke"><FileSpreadsheet />ANOTHER<br />EXCEL FILE...</div></div>
         <div className="documentStack">{["학생 활동 일지", "기업별 활동 보고", "기업 방문 감상문", "병원 실습 보고", "기업 사용 매뉴얼", "학교 사용 매뉴얼", "관리자 매뉴얼", "박람회 설명자료", "학생 인터뷰 자료", "출퇴근 관리 자료"].map((doc, i) => <article key={doc} style={{"--i": i} as React.CSSProperties}><small>DOC / {String(i + 1).padStart(2,"0")}</small><h3>{doc}</h3><FileSpreadsheet /></article>)}</div>
-      </section>
-
-      <section className="timeline section colorBand" id="timeline">
-        <div className="sectionHeading"><div><p className="eyebrow">TIMELINE</p><h2>60 DAYS<br />IN JAPAN</h2></div><p>Tokyo internship line<br />June 30 — August 07</p></div>
-        <div className="timelineLine"><div className="train"><TrainFront /></div>{timeline.map(([date,title], i) => <button key={`${date}${title}`} onClick={() => setLightbox({ caption: `${date} — ${title}`, src: ["/images/ai-tokyo-hero.jpg", "/images/ai-system-development.jpg", "/images/ai-company-visit.jpg", "/images/ai-expo.jpg", "/images/ai-communication.jpg"][i % 5] })}><span>{i + 1}</span><time>{date}</time><strong>{title}</strong></button>)}</div>
       </section>
 
       <section className="numbers section"><p className="eyebrow">INTERNSHIP BY NUMBERS</p><h2>INTERNSHIP<br />BY NUMBERS.</h2><div className="numberGrid">{numberStats.map(([n,label,suffix]) => <div key={label} data-reveal><strong>{n}{suffix || ""}</strong><span>{label}</span></div>)}<div className="infinite" data-reveal><strong>∞</strong><span>PROBLEMS SOLVED</span></div></div></section>
