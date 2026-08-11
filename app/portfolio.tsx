@@ -13,9 +13,11 @@ type PhotoProps = { label: string; hint?: string; src?: string; className?: stri
 function Photo({ label, hint = "Photo will be added later", src, className = "", caption }: PhotoProps) {
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(src) && !failed;
+  const basePath = typeof document === "undefined" ? "" : document.documentElement.dataset.basePath || "";
+  const resolvedSrc = src?.startsWith("/") ? `${basePath}${src}` : src;
   return (
     <figure className={`photo ${className}`}>
-      {showImage ? <img src={src} alt={caption || label} onError={() => setFailed(true)} /> : (
+      {showImage ? <img src={resolvedSrc} alt={caption || label} onError={() => setFailed(true)} /> : (
         <div className="photoPlaceholder"><Camera aria-hidden="true" /><strong>{label}</strong><span>{hint}</span></div>
       )}
       {showImage && src?.includes("/ai-") && <span className="aiBadge">AI GENERATED</span>}
