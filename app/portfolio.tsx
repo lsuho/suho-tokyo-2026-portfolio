@@ -2,7 +2,7 @@
 
 import {
   ArrowDown, ArrowRight, BookOpen, Building2, CalendarDays, Camera, Check,
-  ClipboardCheck, Code2, ExternalLink, FileSpreadsheet, Languages, MapPin,
+  ClipboardCheck, Code2, ExternalLink, Languages, MapPin,
   Menu, Search, TrainFront, Users, X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -128,9 +128,9 @@ export function Portfolio() {
           <div><small>{isJa ? "INTEREST" : "INTEREST"}</small><strong>{isJa ? "AI・データ・Webシステム" : "AI · 데이터 · 웹 시스템"}</strong></div>
         </div>
         <div className="growthNarrative">
-          <div data-reveal><span>01</span><p className="eyebrow">AT UNIVERSITY</p><h3>{isJa ? "大学で学んだこと" : "학교에서 배운 것"}</h3><p>{isJa ? "全南大学校の人工知能学部で、プログラミング、人工知能の基礎、データ分析、アルゴリズム、問題解決の考え方を学びました。正解を覚えるのではなく、問題を分解し、データと技術を使って解決方法を設計する力を培ってきました。" : "전남대학교 인공지능학부 인공지능전공에서 프로그래밍, 인공지능 기초, 데이터 분석, 알고리즘과 문제 해결 방식을 배웠습니다. 정답을 외우기보다 문제를 나누고, 데이터와 기술을 이용해 해결 방법을 설계하는 힘을 길렀습니다."}</p></div>
-          <div data-reveal><span>02</span><p className="eyebrow">IN TOKYO</p><h3>{isJa ? "インターンシップで担当したこと" : "인턴십에서 맡은 일"}</h3><p>{isJa ? "東京でのインターンシップでは、実習日誌管理システムの開発だけでなく、学生の日程・提出物管理、企業訪問と展示会の調査・予約・引率、日韓通訳、Webページと業務資料の制作まで担当しました。大学で学んだ技術を、実際の運営課題の解決に活用しました。" : "도쿄 인턴십에서는 실습일지 관리 시스템 개발뿐 아니라 학생 일정과 제출물 관리, 기업 방문과 박람회 조사·예약·인솔, 한일 통역, 웹페이지와 업무 자료 제작까지 담당했습니다. 학교에서 배운 기술을 실제 운영 문제를 해결하는 데 활용했습니다."}</p></div>
-          <div data-reveal><span>03</span><p className="eyebrow">THE CHALLENGE</p><h3>{isJa ? "難しかったことと成長" : "힘들었던 점과 성장"}</h3><p>{isJa ? "最も難しかったのは、開発だけに集中できる環境ではなかったことです。言語と文化が異なる関係者の要望を確認しながら、変更される日程と複数の業務に同時に対応する必要がありました。質問、記録、優先順位付けを繰り返し、技術とコミュニケーションの両方があってこそ仕事が進むことを学びました。" : "가장 힘들었던 점은 개발에만 집중할 수 있는 환경이 아니었다는 것입니다. 언어와 문화가 다른 관계자의 요구를 확인하면서 계속 바뀌는 일정과 여러 업무를 동시에 처리해야 했습니다. 질문하고 기록하며 우선순위를 조정하는 과정을 반복했고, 기술과 소통이 함께해야 일이 완성된다는 것을 배웠습니다."}</p></div>
+          <div data-reveal><span>01</span><p className="eyebrow">AT UNIVERSITY</p><h3>{isJa ? "大学で学んだこと" : "학교에서 배운 것"}</h3><p>{isJa ? "全南大学校の人工知能学部・人工知能専攻で、プログラミング、人工知能の基礎、データ分析、アルゴリズム、問題解決の考え方を学びました。授業とプロジェクトを通じて、問題を小さな単位に分解し、必要なデータを整理し、実装後の結果を確認しながら改善する流れを身につけました。技術そのものだけでなく、利用者の立場から機能を設計することも大切にしてきました。" : "전남대학교 인공지능학부 인공지능전공에서 프로그래밍, 인공지능 기초, 데이터 분석, 알고리즘과 문제 해결 방식을 배웠습니다. 수업과 프로젝트를 통해 문제를 작은 단위로 나누고, 필요한 데이터를 정리한 뒤 구현 결과를 확인하며 개선하는 과정을 익혔습니다. 기술 자체뿐 아니라 실제 사용자의 입장에서 기능을 설계하는 태도도 중요하게 배웠습니다."}</p></div>
+          <div data-reveal><span>02</span><p className="eyebrow">IN TOKYO</p><h3>{isJa ? "インターンシップで担当したこと" : "인턴십에서 맡은 일"}</h3><p>{isJa ? "東京でのインターンシップでは、実習日誌管理システムの要件整理、画面構成、機能実装、利用者向けマニュアル作成まで担当しました。同時に、学生の日程・出退勤・提出物の確認、企業訪問と展示会の調査・予約・移動計画・現地引率、日韓関係者間の通訳、Webページと報告資料の制作にも携わりました。大学で学んだ技術を、現場で起きている具体的な運営課題の解決につなげる経験となりました。" : "도쿄 인턴십에서는 실습일지 관리 시스템의 요구사항 정리, 화면 구성, 기능 구현과 사용자 매뉴얼 제작까지 담당했습니다. 동시에 학생 일정·출퇴근·제출물 확인, 기업 방문과 박람회 조사·예약·이동 계획·현장 인솔, 한일 관계자 사이의 통역, 웹페이지와 보고 자료 제작에도 참여했습니다. 학교에서 배운 기술을 현장에서 발생하는 구체적인 운영 문제 해결에 연결한 경험이었습니다."}</p></div>
+          <div data-reveal><span>03</span><p className="eyebrow">THE CHALLENGE</p><h3>{isJa ? "難しかったことと成長" : "힘들었던 점과 성장"}</h3><p>{isJa ? "最も難しかったのは、開発だけに集中できる環境ではなく、言語と文化が異なる関係者の要望を確認しながら、変更される日程と複数の業務に同時対応する必要があったことです。最初は曖昧な依頼を機能に落とし込むことや、急な予定変更の中で優先順位を決めることに苦労しました。そこで、確認事項をすぐに質問し、決定内容を記録し、作業を重要度と期限で整理するようにしました。この経験から、技術力だけでなく、説明・確認・共有まで含めて仕事を完成させる姿勢を学びました。" : "가장 힘들었던 점은 개발에만 집중하는 환경이 아니라, 언어와 문화가 다른 관계자의 요구를 확인하면서 계속 바뀌는 일정과 여러 업무를 동시에 처리해야 했다는 것입니다. 처음에는 모호한 요청을 실제 기능으로 정리하고, 갑작스러운 일정 변경 속에서 우선순위를 결정하는 일이 어려웠습니다. 그래서 확인할 내용을 바로 질문하고 결정 사항을 기록했으며, 업무를 중요도와 마감일 기준으로 정리했습니다. 이 경험을 통해 기술력뿐 아니라 설명·확인·공유까지 포함해야 일이 완성된다는 태도를 배웠습니다."}</p></div>
         </div>
         <div className="storyGrid">
           <div><p className="eyebrow">SO...</p><h2>WHAT DID I<br />ACTUALLY DO?</h2></div>
@@ -185,11 +185,6 @@ export function Portfolio() {
         <div className="communicationTitle"><p className="eyebrow">COMMUNICATION & INTERPRETATION</p><h2>BETWEEN<br />KOREA <span>KR</span><br /><i>&</i><br />JAPAN <span>JP</span></h2></div>
         <div className="bridge" data-reveal><div><strong>KOREA</strong><span>University<br />Professors<br />Students</span></div><div className="me"><Languages />ME</div><div><strong>JAPAN</strong><span>Companies<br />Managers<br />Organizations</span></div></div>
         <p className="communicationCopy">{isJa ? "韓国の大学・学生と日本企業の間で、現場通訳、業務文書の作成、日韓資料の整理、企業案内資料とシステムマニュアルの制作を支援しました。" : "한국 학교, 학생, 일본 기업 사이에서 현장 통역, 업무 문서 작성, 한일 자료 정리, 기업 안내자료와 시스템 매뉴얼 제작을 지원했습니다."}</p>
-      </section>
-
-      <section className="documents section">
-        <div className="sectionHeading"><div><p className="eyebrow">DOCUMENTATION</p><h2>SO. MANY.<br />DOCUMENTS.</h2></div><div className="excelJoke"><FileSpreadsheet />ANOTHER<br />EXCEL FILE...</div></div>
-        <div className="documentStack">{(isJa ? ["学生活動日誌", "企業別活動報告", "企業訪問レポート", "病院実習報告", "企業向けマニュアル", "大学向けマニュアル", "管理者マニュアル", "展示会説明資料", "学生インタビュー資料", "出退勤管理資料"] : ["학생 활동 일지", "기업별 활동 보고", "기업 방문 감상문", "병원 실습 보고", "기업 사용 매뉴얼", "학교 사용 매뉴얼", "관리자 매뉴얼", "박람회 설명자료", "학생 인터뷰 자료", "출퇴근 관리 자료"]).map((doc, i) => <article key={doc} style={{"--i": i} as React.CSSProperties}><small>DOC / {String(i + 1).padStart(2,"0")}</small><h3>{doc}</h3><FileSpreadsheet /></article>)}</div>
       </section>
 
       <section className="numbers section"><p className="eyebrow">INTERNSHIP BY NUMBERS</p><h2>INTERNSHIP<br />BY NUMBERS.</h2><div className="numberGrid">{numberStats.map(([n,label,suffix]) => <div key={label} data-reveal><strong>{n}{suffix || ""}</strong><span>{label}</span></div>)}<div className="infinite" data-reveal><strong>∞</strong><span>PROBLEMS SOLVED</span></div></div></section>
