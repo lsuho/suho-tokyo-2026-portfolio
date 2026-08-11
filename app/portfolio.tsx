@@ -17,6 +17,7 @@ function Photo({ label, hint = "Photo will be added later", src, className = "",
       {showImage ? <img src={src} alt={caption || label} onError={() => setFailed(true)} /> : (
         <div className="photoPlaceholder"><Camera aria-hidden="true" /><strong>{label}</strong><span>{hint}</span></div>
       )}
+      {showImage && src?.includes("/ai-") && <span className="aiBadge">AI 연출 이미지</span>}
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   );
@@ -47,7 +48,7 @@ const numberStats = [[60, "DAYS IN JAPAN"], [2, "UNIVERSITIES"], [5, "COMPANIES"
 
 export function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<{ caption: string; src: string } | null>(null);
   const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -90,7 +91,7 @@ export function Portfolio() {
           <p className="heroNote">From building systems<br />to guiding students across Tokyo.</p>
         </div>
         <div className="heroVisual">
-          <Photo label="PHOTO PLACEHOLDER — HERO" hint="Tokyo / Work / Suho" src="/images/profile.jpg" />
+          <Photo label="TOKYO 2026" hint="Tokyo / Work / Suho" src="/images/ai-tokyo-hero.jpg" />
           <span className="sticker stickerA">TOKYO <b>JP</b></span><span className="sticker stickerB">SUMMER 2026</span><span className="sticker stickerC">BUILDING...</span><span className="sticker stickerD">BUSY DAY!</span>
         </div>
         <a className="scrollCue" href="#about">SCROLL TO EXPLORE <ArrowDown /></a>
@@ -105,7 +106,7 @@ export function Portfolio() {
           </div>
         </div>
         <div className="storyResult" data-reveal>I HELPED<br /><span>RUN THE PROGRAM.</span></div>
-        <div className="splitCopy" data-reveal><Photo label="PHOTO PLACEHOLDER — GENERAL INTERNSHIP" src="/images/general-internship.jpg" /><p>일본 인턴십 프로그램의 전반적인 운영을 보조하며 학생, 기업, 학교 사이에서 필요한 다양한 업무를 담당했습니다. 웹 시스템 개발부터 학생 관리, 기업 방문 기획과 예약, 박람회 참가 신청, 현장 인솔, 통역, 보고자료 제작까지 실제 운영 과정에 폭넓게 참여했습니다.</p></div>
+        <div className="splitCopy" data-reveal><Photo label="PROGRAM OPERATIONS" src="/images/ai-communication.jpg" /><p>일본 인턴십 프로그램의 전반적인 운영을 보조하며 학생, 기업, 학교 사이에서 필요한 다양한 업무를 담당했습니다. 웹 시스템 개발부터 학생 관리, 기업 방문 기획과 예약, 박람회 참가 신청, 현장 인솔, 통역, 보고자료 제작까지 실제 운영 과정에 폭넓게 참여했습니다.</p></div>
       </section>
 
       <section className="roles section colorBand" id="work">
@@ -117,35 +118,34 @@ export function Portfolio() {
         <div className="sectionHeading"><div><p className="eyebrow">SYSTEM DEVELOPMENT</p><h2>I BUILT<br />A SYSTEM.</h2></div><p><strong>Not just a prototype.</strong><br />It was actually used.</p></div>
         <div className="systemIntro" data-reveal><p>학생들의 실습 활동을 효율적으로 관리하는 웹 기반 일지 관리 시스템을 개발했습니다. 학생, 기업 담당자, 학교 담당자와 관리자가 실제로 사용하는 것을 전제로 설계했습니다.</p><div className="buildLoop"><b>BUILD</b><ArrowRight /><b>DEPLOY</b><ArrowRight /><b>USE</b><ArrowRight /><b>FIX</b><ArrowRight /><b>IMPROVE</b></div></div>
         <div className="systemMap" data-reveal><strong>ADMIN</strong><i /><div><span><Users />STUDENT<small>일지 작성 · 기록 확인</small></span><span><Building2 />COMPANY<small>일지 확인 · 코멘트</small></span><span><BookOpen />SCHOOL<small>소속 학생 확인</small></span></div></div>
-        <div className="browserMock" data-reveal><div className="browserBar"><i /><i /><i /><span>internship-log.system</span></div><Photo label="PHOTO PLACEHOLDER — SYSTEM SCREENSHOT 01" src="/images/system-01.jpg" /></div>
-        <div className="threePhotos"><Photo label="LOGIN" src="/images/login.jpg" /><Photo label="STUDENT PAGE" src="/images/student-page.jpg" /><Photo label="ADMIN PAGE" src="/images/admin-page.jpg" /></div>
+        <div className="browserMock" data-reveal><div className="browserBar"><i /><i /><i /><span>internship-log.system</span></div><Photo label="SYSTEM DEVELOPMENT" src="/images/ai-system-development.jpg" /></div>
       </section>
 
       <section className="students section warmBand">
         <div className="studentLayout"><div><p className="eyebrow">STUDENT MANAGEMENT</p><h2>KEEPING<br />EVERYONE<br />ON TRACK.</h2><p className="bigAside">CODING WASN&apos;T<br />THE ONLY THING<br />I HAD TO MANAGE.</p></div><div className="checklist">{studentTasks.map((task) => <div data-reveal key={task}><Check />{task}</div>)}</div></div>
-        <div className="photoRow"><Photo label="STUDENT ACTIVITY" src="/images/student-activity.jpg" /><Photo label="REPORT WORK" src="/images/report-work.jpg" /><Photo label="INTERVIEW" src="/images/interview-01.jpg" /></div>
+        <div className="singleFeaturePhoto"><Photo label="STUDENT ACTIVITY & REPORT WORK" src="/images/ai-communication.jpg" /></div>
       </section>
 
       <section className="visits section" id="visits">
         <div className="sectionHeading"><div><p className="eyebrow">COMPANY VISITS</p><h2>LET&apos;S VISIT<br />A COMPANY.</h2></div><p>SEARCH → BOOK → PLAN → GUIDE</p></div>
         <div className="flowRail" data-reveal>{[[Search,"SEARCH"],[Building2,"CONTACT"],[CalendarDays,"RESERVE"],[ClipboardCheck,"SCHEDULE"],[MapPin,"GUIDE"],[BookOpen,"REPORT"]].map(([Icon,label], i) => { const I = Icon as typeof Search; return <div key={label as string}><I /><b>{label as string}</b><span>{i + 1}</span></div>})}</div>
-        <Visit title="INNOPHYS" date="2026.07.23" category="ROBOTICS / HUMAN ASSIST" text="인체의 움직임과 작업을 지원하는 로봇 기술을 확인했습니다. 무거운 물건을 들 때 신체 부담을 줄이는 기술을 살펴보며 실제 산업 활용 사례를 경험했습니다." images={["/images/innophys-01.jpg", "/images/innophys-02.jpg"]} />
-        <Visit reverse title="YAKULT" date="2026.08.03" category="HEALTH / RESEARCH" text="방문 정보를 확인하고 일정과 참가 인원을 준비했습니다. 당일에는 학생 집합과 이동을 관리하고 현장 인솔을 담당했습니다." images={["/images/yakult-01.jpg", "/images/yakult-group.jpg"]} />
+        <Visit title="INNOPHYS" date="2026.07.23" category="ROBOTICS / HUMAN ASSIST" text="인체의 움직임과 작업을 지원하는 로봇 기술을 확인했습니다. 무거운 물건을 들 때 신체 부담을 줄이는 기술을 살펴보며 실제 산업 활용 사례를 경험했습니다." images={["/images/ai-company-visit.jpg"]} />
+        <Visit reverse title="YAKULT" date="2026.08.03" category="HEALTH / RESEARCH" text="방문 정보를 확인하고 일정과 참가 인원을 준비했습니다. 당일에는 학생 집합과 이동을 관리하고 현장 인솔을 담당했습니다." images={["/images/ai-communication.jpg"]} />
       </section>
 
       <section className="expo section colorBand" id="expo">
         <div className="sectionHeading"><div><p className="eyebrow">EXHIBITION PLANNING</p><h2>NEXT STOP:<br />EXPO!</h2></div><p>FOUND IT. BOOKED IT.<br />PLANNED IT. GUIDED IT.</p></div>
         <div className="expoRoute"><TrainFront />EVENT SEARCH <ArrowRight /> REGISTRATION <ArrowRight /> SCHEDULE <ArrowRight /> TRANSPORTATION <ArrowRight /> ON-SITE SUPPORT</div>
         <div className="eventGrid">
-          <Event title="イプロスAI 2026 夏" date="2026.07.29" category="AI / DX / AUTOMATION" text="생성형 AI, AI Agent, 업무 자동화, 데이터 활용과 마케팅 지원 서비스를 확인하기 위해 박람회를 조사하고 참가 등록을 진행했습니다." photo="/images/ipro-01.jpg" tags="GENERATIVE AI · AI AGENTS · DX" />
-          <Event title="WELLNESS FOOD" date="2026.08.05" category="HEALTH / FOOD / WELLNESS" text="참가 정보를 조사하고 등록했으며, 병원 실습 학생들과 합류해 전시장까지 인솔했습니다. 건강식과 헬스케어 제품을 확인했습니다." photo="/images/wellness-01.jpg" tags="HEALTH FOOD · NUTRITION · CARE" />
+          <Event title="イプロスAI 2026 夏" date="2026.07.29" category="AI / DX / AUTOMATION" text="생성형 AI, AI Agent, 업무 자동화, 데이터 활용과 마케팅 지원 서비스를 확인하기 위해 박람회를 조사하고 참가 등록을 진행했습니다." photo="/images/ai-expo.jpg" tags="GENERATIVE AI · AI AGENTS · DX" />
+          <Event title="WELLNESS FOOD" date="2026.08.05" category="HEALTH / FOOD / WELLNESS" text="참가 정보를 조사하고 등록했으며, 병원 실습 학생들과 합류해 전시장까지 인솔했습니다. 건강식과 헬스케어 제품을 확인했습니다." photo="/images/ai-expo.jpg" tags="HEALTH FOOD · NUTRITION · CARE" />
         </div>
       </section>
 
       <section className="digital section">
         <div className="sectionHeading"><div><p className="eyebrow">WEB & CONTENT</p><h2>I ALSO<br />BUILT THINGS.</h2></div><p>Research. Structure. Build. Improve.</p></div>
-        <div className="digitalSplit"><div className="digitalCopy"><h3>CORPORATE WEB PAGE</h3><p>기업 정보를 조사하고 사업 내용과 서비스를 정리해 콘텐츠 구조, 반응형 UI, 애니메이션과 사용자 경험을 구현했습니다.</p><ul><li>기업 정보 조사</li><li>콘텐츠 구조 설계</li><li>UI 구현</li><li>반응형 구성</li><li>애니메이션</li><li>사용성 개선</li></ul></div><Photo label="WEB PAGE / MOBILE VIEW" src="/images/web-page-01.jpg" /></div>
-        <h3 className="galleryTitle">DIGITAL CONTENT</h3><div className="horizontalGallery">{[1,2,3,4].map((n) => <Photo key={n} label={`CONTENT 0${n}`} src={`/images/content-0${n}.jpg`} />)}</div>
+        <div className="digitalSplit"><div className="digitalCopy"><h3>CORPORATE WEB PAGE</h3><p>기업 정보를 조사하고 사업 내용과 서비스를 정리해 콘텐츠 구조, 반응형 UI, 애니메이션과 사용자 경험을 구현했습니다.</p><ul><li>기업 정보 조사</li><li>콘텐츠 구조 설계</li><li>UI 구현</li><li>반응형 구성</li><li>애니메이션</li><li>사용성 개선</li></ul></div><Photo label="WEB PAGE / MOBILE VIEW" src="/images/ai-system-development.jpg" /></div>
+        <h3 className="galleryTitle">DIGITAL CONTENT</h3><div className="contentStrip"><span>INSTAGRAM</span><span>REELS</span><span>JAPANESE COPY</span><span>KOREAN COPY</span><span>PHOTO & VIDEO</span></div>
       </section>
 
       <section className="communication section warmBand">
@@ -161,7 +161,7 @@ export function Portfolio() {
 
       <section className="timeline section colorBand" id="timeline">
         <div className="sectionHeading"><div><p className="eyebrow">TIMELINE</p><h2>60 DAYS<br />IN JAPAN</h2></div><p>Tokyo internship line<br />June 30 — August 07</p></div>
-        <div className="timelineLine"><div className="train"><TrainFront /></div>{timeline.map(([date,title], i) => <button key={`${date}${title}`} onClick={() => setLightbox(`${date} — ${title}`)}><span>{i + 1}</span><time>{date}</time><strong>{title}</strong></button>)}</div>
+        <div className="timelineLine"><div className="train"><TrainFront /></div>{timeline.map(([date,title], i) => <button key={`${date}${title}`} onClick={() => setLightbox({ caption: `${date} — ${title}`, src: ["/images/ai-tokyo-hero.jpg", "/images/ai-system-development.jpg", "/images/ai-company-visit.jpg", "/images/ai-expo.jpg", "/images/ai-communication.jpg"][i % 5] })}><span>{i + 1}</span><time>{date}</time><strong>{title}</strong></button>)}</div>
       </section>
 
       <section className="numbers section"><p className="eyebrow">INTERNSHIP BY NUMBERS</p><h2>INTERNSHIP<br />BY NUMBERS.</h2><div className="numberGrid">{numberStats.map(([n,label,suffix]) => <div key={label} data-reveal><strong>{n}{suffix || ""}</strong><span>{label}</span></div>)}<div className="infinite" data-reveal><strong>∞</strong><span>PROBLEMS SOLVED</span></div></div></section>
@@ -173,17 +173,19 @@ export function Portfolio() {
         <Lesson n="04" title="DEVELOPMENT ≠ CODING ONLY." text="개발, 운영, 사용자 지원, 커뮤니케이션과 문서화가 함께해야 서비스가 움직입니다." />
       </div></section>
 
-      <section className="memories section"><p className="eyebrow">PHOTO MEMORIES</p><h2>TOKYO<br />MEMORIES.</h2><div className="masonry">{["INNOPHYS — 2026.07.23", "YAKULT — 2026.08.03", "WELLNESS FOOD — 2026.08.05", "TOKYO OFFICE", "INTERNSHIP TEAM", "AI EXPO", "COMPANY VISIT", "SUMMER IN TOKYO"].map((caption, i) => <button key={caption} onClick={() => setLightbox(caption)} aria-label={`${caption} 크게 보기`}><Photo label={`PHOTO PLACEHOLDER 0${i + 1}`} src={`/images/memory-0${i + 1}.jpg`} caption={caption} /></button>)}</div></section>
+      <section className="memories section"><p className="eyebrow">VISUAL HIGHLIGHTS</p><h2>TOKYO<br />MEMORIES.</h2><div className="masonry">{[
+        ["TOKYO, SUMMER 2026", "/images/ai-tokyo-hero.jpg"], ["SYSTEM DEVELOPMENT", "/images/ai-system-development.jpg"], ["COMPANY VISIT", "/images/ai-company-visit.jpg"], ["AI & WELLNESS EXPO", "/images/ai-expo.jpg"], ["PROGRAM COMMUNICATION", "/images/ai-communication.jpg"]
+      ].map(([caption, src]) => <button key={caption} onClick={() => setLightbox({ caption, src })} aria-label={`${caption} 크게 보기`}><Photo label={caption} src={src} caption={caption} /></button>)}</div></section>
 
       <section className="ending"><div className="endingRoute" aria-hidden="true" /><p>FROM</p><h2>STUDENT</h2><span>TO</span><h2>OPERATOR.</h2><div className="endingCopy">일본에 학생으로 왔지만,<br />돌아갈 때는 하나의 인턴십 프로그램이<br />어떻게 운영되는지를 경험하게 되었습니다.</div><strong>I DIDN&apos;T JUST PARTICIPATE.<br />I HELPED MAKE IT HAPPEN.</strong><footer>TOKYO, JAPAN · SUMMER 2026<br /><b>LEE SUHO</b></footer></section>
     </main>
 
-    {lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label="사진 미리보기" onClick={() => setLightbox(null)}><button aria-label="닫기" onClick={() => setLightbox(null)}><X /></button><div onClick={(e) => e.stopPropagation()}><Photo label="PHOTO PLACEHOLDER" caption={lightbox} /></div></div>}
+    {lightbox && <div className="lightbox" role="dialog" aria-modal="true" aria-label="사진 미리보기" onClick={() => setLightbox(null)}><button aria-label="닫기" onClick={() => setLightbox(null)}><X /></button><div onClick={(e) => e.stopPropagation()}><Photo label={lightbox.caption} src={lightbox.src} caption={lightbox.caption} /></div></div>}
   </>;
 }
 
 function Visit({ title, date, category, text, images, reverse = false }: { title: string; date: string; category: string; text: string; images: string[]; reverse?: boolean }) {
-  return <article className={`visit ${reverse ? "reverse" : ""}`} data-reveal><div className="visitInfo"><p>{date} / {category}</p><h3>{title}</h3><span>{text}</span></div><div className="visitPhotos">{images.map((src, i) => <Photo key={src} label={`${title} 0${i + 1}`} src={src} />)}</div></article>;
+  return <article className={`visit ${reverse ? "reverse" : ""}`} data-reveal><div className="visitInfo"><p>{date} / {category}</p><h3>{title}</h3><span>{text}</span></div><div className={`visitPhotos ${images.length === 1 ? "single" : ""}`}>{images.map((src, i) => <Photo key={src} label={`${title} 0${i + 1}`} src={src} />)}</div></article>;
 }
 
 function Event({ title, date, category, text, photo, tags }: { title: string; date: string; category: string; text: string; photo: string; tags: string }) {
