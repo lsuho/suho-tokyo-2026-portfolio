@@ -107,9 +107,9 @@ export function Portfolio() {
       <section className="hero" ref={heroRef}>
         <div className="metroLines" aria-hidden="true"><i /><i /><i /><i /></div>
         <div className="heroCopy">
-          <p className="kicker">JAPAN INTERNSHIP 2026</p>
+          <p className="kicker">CHONNAM NATIONAL UNIVERSITY · AI MAJOR</p>
           <h1>SUHO<br /><span>IN TOKYO</span></h1>
-          <p className="discipline">PROGRAM OPERATIONS <b>×</b> DEVELOPMENT <b>×</b> COMMUNICATION</p>
+          <p className="discipline">ARTIFICIAL INTELLIGENCE <b>×</b> DEVELOPMENT <b>×</b> PROGRAM OPERATIONS</p>
           <div className="heroStatement">I DIDN&apos;T JUST PARTICIPATE.<br /><strong>I HELPED MAKE IT HAPPEN.</strong></div>
           <p className="heroNote">{isJa ? <>システム開発から<br />東京での学生引率まで。</> : <>From building systems<br />to guiding students across Tokyo.</>}</p>
         </div>
@@ -122,6 +122,16 @@ export function Portfolio() {
 
       <section className="story section" id="about">
         <div className="sectionTag">01 / ABOUT</div>
+        <div className="profileIntro" data-reveal>
+          <div><small>{isJa ? "UNIVERSITY" : "UNIVERSITY"}</small><strong>{isJa ? "全南大学校" : "전남대학교"}</strong></div>
+          <div><small>{isJa ? "DEPARTMENT" : "DEPARTMENT"}</small><strong>{isJa ? "人工知能学部・人工知能専攻" : "인공지능학부 · 인공지능전공"}</strong></div>
+          <div><small>{isJa ? "INTEREST" : "INTEREST"}</small><strong>{isJa ? "AI・データ・Webシステム" : "AI · 데이터 · 웹 시스템"}</strong></div>
+        </div>
+        <div className="growthNarrative">
+          <div data-reveal><span>01</span><p className="eyebrow">AT UNIVERSITY</p><h3>{isJa ? "大学で学んだこと" : "학교에서 배운 것"}</h3><p>{isJa ? "全南大学校の人工知能学部で、プログラミング、人工知能の基礎、データ分析、アルゴリズム、問題解決の考え方を学びました。正解を覚えるのではなく、問題を分解し、データと技術を使って解決方法を設計する力を培ってきました。" : "전남대학교 인공지능학부 인공지능전공에서 프로그래밍, 인공지능 기초, 데이터 분석, 알고리즘과 문제 해결 방식을 배웠습니다. 정답을 외우기보다 문제를 나누고, 데이터와 기술을 이용해 해결 방법을 설계하는 힘을 길렀습니다."}</p></div>
+          <div data-reveal><span>02</span><p className="eyebrow">IN TOKYO</p><h3>{isJa ? "インターンシップで担当したこと" : "인턴십에서 맡은 일"}</h3><p>{isJa ? "東京でのインターンシップでは、実習日誌管理システムの開発だけでなく、学生の日程・提出物管理、企業訪問と展示会の調査・予約・引率、日韓通訳、Webページと業務資料の制作まで担当しました。大学で学んだ技術を、実際の運営課題の解決に活用しました。" : "도쿄 인턴십에서는 실습일지 관리 시스템 개발뿐 아니라 학생 일정과 제출물 관리, 기업 방문과 박람회 조사·예약·인솔, 한일 통역, 웹페이지와 업무 자료 제작까지 담당했습니다. 학교에서 배운 기술을 실제 운영 문제를 해결하는 데 활용했습니다."}</p></div>
+          <div data-reveal><span>03</span><p className="eyebrow">THE CHALLENGE</p><h3>{isJa ? "難しかったことと成長" : "힘들었던 점과 성장"}</h3><p>{isJa ? "最も難しかったのは、開発だけに集中できる環境ではなかったことです。言語と文化が異なる関係者の要望を確認しながら、変更される日程と複数の業務に同時に対応する必要がありました。質問、記録、優先順位付けを繰り返し、技術とコミュニケーションの両方があってこそ仕事が進むことを学びました。" : "가장 힘들었던 점은 개발에만 집중할 수 있는 환경이 아니었다는 것입니다. 언어와 문화가 다른 관계자의 요구를 확인하면서 계속 바뀌는 일정과 여러 업무를 동시에 처리해야 했습니다. 질문하고 기록하며 우선순위를 조정하는 과정을 반복했고, 기술과 소통이 함께해야 일이 완성된다는 것을 배웠습니다."}</p></div>
+        </div>
         <div className="storyGrid">
           <div><p className="eyebrow">SO...</p><h2>WHAT DID I<br />ACTUALLY DO?</h2></div>
           <div className="storyLines">
