@@ -120,6 +120,10 @@ export function Portfolio() {
         <a className="scrollCue" href="#about">SCROLL TO EXPLORE <ArrowDown /></a>
       </section>
 
+      <div className="motionTicker" aria-hidden="true"><div>
+        {[0, 1].map(group => <span key={group}>AI MAJOR <b>●</b> TOKYO INTERNSHIP <i>✦</i> JISA WEBSITE <b>●</b> MANAGEMENT SYSTEM <i>✦</i> PROGRAM OPERATIONS <b>●</b> BUILD · TEST · IMPROVE <i>✦</i></span>)}
+      </div></div>
+
       <section className="story section" id="about">
         <div className="sectionTag">01 / ABOUT</div>
         <div className="profileIntro" data-reveal>
