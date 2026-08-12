@@ -118,14 +118,9 @@ export function Portfolio() {
         </div>
         <div className="heroVisual">
           <Photo label="TOKYO 2026" hint="Tokyo / Work / Suho" src="/images/ai-tokyo-hero.jpg" />
-          <span className="sticker stickerA">TOKYO <b>JP</b></span><span className="sticker stickerB">SUMMER 2026</span><span className="sticker stickerC">BUILDING...</span><span className="sticker stickerD">BUSY DAY!</span>
         </div>
         <a className="scrollCue" href="#about">SCROLL TO EXPLORE <ArrowDown /></a>
       </section>
-
-      <div className="motionTicker" aria-hidden="true"><div>
-        {[0, 1].map(group => <span key={group}>AI MAJOR <b>●</b> TOKYO INTERNSHIP <i>✦</i> JISA WEBSITE <b>●</b> MANAGEMENT SYSTEM <i>✦</i> PROGRAM OPERATIONS <b>●</b> BUILD · TEST · IMPROVE <i>✦</i></span>)}
-      </div></div>
 
       <section className="story section" id="about">
         <div className="sectionTag">01 / ABOUT</div>
