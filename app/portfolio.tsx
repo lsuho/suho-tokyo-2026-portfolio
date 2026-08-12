@@ -160,7 +160,11 @@ export function Portfolio() {
         </div>
         <div className="techStack"><span>GOOGLE APPS SCRIPT</span><span>GOOGLE SHEETS</span><span>ROLE-BASED ACCESS</span><span>CRUD</span><span>RESPONSIVE UI</span><span>OPERATIONS</span></div>
         <div className="systemMap" data-reveal><strong>ADMIN</strong><i /><div><span><Users />STUDENT<small>{isJa ? "日誌作成・記録確認" : "일지 작성 · 기록 확인"}</small></span><span><Building2 />COMPANY<small>{isJa ? "日誌確認・コメント" : "일지 확인 · 코멘트"}</small></span><span><BookOpen />SCHOOL<small>{isJa ? "所属学生の確認" : "소속 학생 확인"}</small></span></div></div>
-        <div className="browserMock" data-reveal><div className="browserBar"><i /><i /><i /><span>internship-log.system</span></div><Photo className="projectScreenshot" label="MANAGEMENT SYSTEM" src="/images/management-system-screenshot.png" caption={isJa ? "実際に開発した活動記録管理システム" : "실제로 개발한 활동기록 관리시스템"} /></div>
+        <div className="systemScreens" data-reveal>
+          <div className="browserMock systemScreenPrimary"><div className="browserBar"><i /><i /><i /><span>activity-record-v2 / portal</span></div><Photo className="projectScreenshot" label="V2 PORTAL" src="/images/management-v2-home.png" caption={isJa ? "V2 ポータル選択画面" : "V2 포털 선택 화면"} /></div>
+          <div className="browserMock"><div className="browserBar"><i /><i /><i /><span>activity-record-v2 / admin</span></div><Photo className="projectScreenshot" label="ADMIN LOGIN" src="/images/management-v2-admin.png" caption={isJa ? "JISA 管理者ログイン画面" : "JISA 관리자 로그인 화면"} /></div>
+          <div className="browserMock"><div className="browserBar"><i /><i /><i /><span>activity-record-v2 / dashboard</span></div><Photo className="projectScreenshot" label="ADMIN DASHBOARD" src="/images/management-v2-dashboard.png" caption={isJa ? "管理者ダッシュボード（非識別データ）" : "관리자 대시보드 (비식별 데이터)"} /></div>
+        </div>
       </section>
 
       <section className="students section warmBand">
