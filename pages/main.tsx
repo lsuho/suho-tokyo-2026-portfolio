@@ -4,8 +4,10 @@ import { Portfolio } from "../app/portfolio";
 import "../app/globals.css";
 import "./pages.css";
 
-createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Portfolio />
-  </React.StrictMode>,
-);
+if (typeof document !== "undefined") {
+  createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <Portfolio />
+    </React.StrictMode>,
+  );
+}
