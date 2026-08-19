@@ -3,7 +3,7 @@
 import {
   ArrowDown, ArrowRight, BookOpen, Building2, CalendarDays, Camera, Check,
   ClipboardCheck, Code2, ExternalLink, Languages, MapPin,
-  Menu, MoonStar, Search, Sparkles, Sun, TrainFront, Users, Waves, X,
+  Menu, Search, Sun, TrainFront, Users, Waves, X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -80,7 +80,6 @@ export function Portfolio() {
   const [language, setLanguage] = useState<Language>("ko");
   const [lightbox, setLightbox] = useState<{ caption: string; src: string } | null>(null);
   const [activeRole, setActiveRole] = useState(0);
-  const [activeChapter, setActiveChapter] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
   const roleDetailRef = useRef<HTMLDivElement>(null);
   const isJa = language === "ja";
@@ -99,6 +98,38 @@ export function Portfolio() {
     ["03", "DISCOVER", "박람회와 웹 제작"],
     ["04", "CONNECT", "한일 커뮤니케이션"],
     ["05", "REMEMBER", "배운 점과 도쿄의 기억"],
+  ];
+  const chapterIds = ["journey-build", "journey-guide", "journey-discover", "journey-connect", "memories"];
+  const memoryPhotos = isJa ? [
+    ["横浜の夜景", "/images/memories/yokohama-night.jpg"],
+    ["観覧車から見た横浜", "/images/memories/yokohama-wheel-portrait.jpg"],
+    ["夏色の観覧車", "/images/memories/yokohama-ferris-wheel.jpg"],
+    ["夏の東京タワー", "/images/memories/tokyo-tower-summer-night.jpg"],
+    ["青空とスカイツリー", "/images/memories/skytree-summer-sky.jpg"],
+    ["東京駅の夜", "/images/memories/tokyo-station-night.jpg"],
+    ["夕暮れの夏祭り", "/images/memories/summer-market.jpg"],
+    ["細田守の原点展", "/images/memories/summer-exhibition.jpg"],
+    ["時をかける少女、2006 SUMMER", "/images/memories/summer-animation.jpg"],
+    ["川越で見つけた灯り", "/images/memories/kawagoe-miffy.jpg"],
+    ["神保町の雑誌棚", "/images/memories/jimbocho-magazines.jpg"],
+    ["矢口書店を歩く", "/images/memories/yaguchi-bookstore.jpg"],
+    ["東京タワーで残した一枚", "/images/memories/tokyo-tower-portrait.jpg"],
+    ["雨上がりの東京タワー", "/images/memories/tokyo-tower-day.jpg"],
+  ] : [
+    ["요코하마의 밤", "/images/memories/yokohama-night.jpg"],
+    ["관람차에서 본 요코하마", "/images/memories/yokohama-wheel-portrait.jpg"],
+    ["여름빛 관람차", "/images/memories/yokohama-ferris-wheel.jpg"],
+    ["여름밤의 도쿄타워", "/images/memories/tokyo-tower-summer-night.jpg"],
+    ["파란 하늘과 스카이트리", "/images/memories/skytree-summer-sky.jpg"],
+    ["도쿄역의 밤", "/images/memories/tokyo-station-night.jpg"],
+    ["해 질 무렵의 여름 축제", "/images/memories/summer-market.jpg"],
+    ["호소다 마모루의 원점전", "/images/memories/summer-exhibition.jpg"],
+    ["시간을 달리는 소녀, 2006 SUMMER", "/images/memories/summer-animation.jpg"],
+    ["가와고에에서 만난 불빛", "/images/memories/kawagoe-miffy.jpg"],
+    ["진보초의 오래된 잡지들", "/images/memories/jimbocho-magazines.jpg"],
+    ["야구치 서점 산책", "/images/memories/yaguchi-bookstore.jpg"],
+    ["도쿄타워에서 남긴 한 장", "/images/memories/tokyo-tower-portrait.jpg"],
+    ["비가 갠 뒤의 도쿄타워", "/images/memories/tokyo-tower-day.jpg"],
   ];
 
   useEffect(() => {
@@ -135,15 +166,11 @@ export function Portfolio() {
     setActiveRole(index);
     requestAnimationFrame(() => roleDetailRef.current?.scrollIntoView({ behavior:"smooth", block:"center" }));
   };
-  const selectChapter = (index: number) => {
-    setActiveChapter(index);
-    requestAnimationFrame(() => document.querySelector(".summerChapterStage")?.scrollIntoView({ behavior:"smooth", block:"start" }));
-  };
   return <>
     <header className="topbar">
       <a className="wordmark" href="#top" onClick={closeMenu}>SUHO <span>/ TOKYO 2026</span></a>
       <nav className={menuOpen ? "navOpen" : ""} aria-label={isJa ? "メインメニュー" : "주요 메뉴"}>
-        {[['ABOUT','about'],['SUMMER CHAPTERS','chapters']].map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
+        {[['ABOUT','about'],['JOURNEY','journey'],['MEMORIES','memories']].map(([label, id]) => <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>)}
       </nav>
       <div className="languageSwitch" role="group" aria-label={isJa ? "言語選択" : "언어 선택"}>
         <button className={!isJa ? "active" : ""} onClick={() => setLanguage("ko")} aria-pressed={!isJa}>한국어</button>
@@ -220,13 +247,14 @@ export function Portfolio() {
         <div className="summerWave" aria-hidden="true"><Waves /><Waves /><Waves /></div>
       </section>
 
-      <section className="summerChapterNav section" aria-label={isJa ? "夏の章を選択" : "여름 챕터 선택"}>
-        <div className="chapterIntro"><p className="eyebrow">CHOOSE A CHAPTER</p><h2>{isJa ? <>夏の記録を<br />ひらく。</> : <>여름의 기록을<br />펼쳐보다.</>}</h2><p>{isJa ? "見たい章を選ぶと、その活動と成果が現れます。" : "궁금한 챕터를 선택하면 해당 활동과 결과가 나타납니다."}</p></div>
-        <div className="chapterButtons" role="tablist">{summerChapters.map(([n, title, desc], index) => <button key={title} type="button" role="tab" aria-selected={activeChapter === index} aria-controls={`summer-panel-${index}`} className={activeChapter === index ? "active" : ""} onClick={() => selectChapter(index)}><span>{n}</span><strong>{title}</strong><small>{desc}</small><ArrowRight /></button>)}</div>
+      <section className="summerRoute section" id="journey" aria-label={isJa ? "夏の記録" : "여름의 기록"}>
+        <div className="routeIntro"><p className="eyebrow">THE SUMMER ROUTE</p><h2>{isJa ? <>仕事も、東京も。<br />一つの夏として。</> : <>일도, 도쿄도.<br />하나의 여름으로.</>}</h2><p>{isJa ? "章を切り替える必要はありません。そのままスクロールしながら、8週間の仕事と時間を順番に見ることができます。" : "챕터를 매번 바꿀 필요 없이 그대로 스크롤하며 8주간의 업무와 시간을 순서대로 볼 수 있습니다."}</p></div>
+        <nav className="routeLinks">{summerChapters.map(([n, title, desc], index) => <a key={title} href={`#${chapterIds[index]}`}><span>{n}</span><strong>{title}</strong><small>{desc}</small><ArrowDown /></a>)}</nav>
       </section>
 
       <div className="summerChapterStage">
-      <div id="summer-panel-0" className="summerChapterPanel" role="tabpanel" hidden={activeChapter !== 0}>
+      <div id="journey-build" className="summerChapterPanel">
+      <div className="journeyMarker"><span>01</span><p>BUILD</p><small>{isJa ? "つくる" : "만들다"}</small></div>
       <section className="roles section colorBand" id="work">
         <div className="sectionHeading"><div><p className="eyebrow">MY ROLE</p><h2>WHAT WAS<br />MY ROLE?</h2></div><p>{isJa ? "運営に必要なことを、幅広く。" : "A little bit of everything."}</p></div>
         <div className="roleTicker" aria-hidden="true">
@@ -263,7 +291,8 @@ export function Portfolio() {
       </section>
 
       </div>
-      <div id="summer-panel-1" className="summerChapterPanel" role="tabpanel" hidden={activeChapter !== 1}>
+      <div id="journey-guide" className="summerChapterPanel">
+      <div className="journeyMarker"><span>02</span><p>GUIDE</p><small>{isJa ? "支える" : "지원하다"}</small></div>
 
       <section className="students section warmBand">
         <div className="studentLayout"><div><p className="eyebrow">STUDENT MANAGEMENT</p><h2>KEEPING<br />EVERYONE<br />ON TRACK.</h2><p className="bigAside">CODING WASN&apos;T<br />THE ONLY THING<br />I HAD TO MANAGE.</p></div><div className="checklist">{studentTasks.map((task) => <div data-reveal key={task}><Check />{task}</div>)}</div></div>
@@ -278,7 +307,8 @@ export function Portfolio() {
       </section>
 
       </div>
-      <div id="summer-panel-2" className="summerChapterPanel" role="tabpanel" hidden={activeChapter !== 2}>
+      <div id="journey-discover" className="summerChapterPanel">
+      <div className="journeyMarker"><span>03</span><p>DISCOVER</p><small>{isJa ? "見つける" : "발견하다"}</small></div>
 
       <section className="expo section colorBand" id="expo">
         <div className="sectionHeading"><div><p className="eyebrow">EXHIBITION PLANNING</p><h2>NEXT STOP:<br />EXPO!</h2></div><p>FOUND IT. BOOKED IT.<br />PLANNED IT. GUIDED IT.</p></div>
@@ -303,7 +333,8 @@ export function Portfolio() {
       </section>
 
       </div>
-      <div id="summer-panel-3" className="summerChapterPanel" role="tabpanel" hidden={activeChapter !== 3}>
+      <div id="journey-connect" className="summerChapterPanel">
+      <div className="journeyMarker"><span>04</span><p>CONNECT</p><small>{isJa ? "つなぐ" : "연결하다"}</small></div>
 
       <section className="communication section warmBand">
         <div className="communicationTitle"><p className="eyebrow">COMMUNICATION & INTERPRETATION</p><h2>BETWEEN<br />KOREA <span>KR</span><br /><i>&</i><br />JAPAN <span>JP</span></h2></div>
@@ -314,8 +345,8 @@ export function Portfolio() {
       <section className="numbers section"><p className="eyebrow">INTERNSHIP BY NUMBERS</p><h2>INTERNSHIP<br />BY NUMBERS.</h2><div className="numberGrid">{numberStats.map(([n,label,suffix]) => <div key={label} data-reveal><strong>{n}{suffix || ""}</strong><span>{label}</span></div>)}<div className="infinite" data-reveal><strong>∞</strong><span>PROBLEMS SOLVED</span></div></div></section>
 
       </div>
-      <div id="summer-panel-4" className="summerChapterPanel summerNightPanel" role="tabpanel" hidden={activeChapter !== 4}>
-        <div className="fireworkField" aria-hidden="true"><i /><i /><i /><Sparkles /><MoonStar /></div>
+      <div id="memories" className="summerChapterPanel memoryChapter">
+      <div className="journeyMarker"><span>05</span><p>REMEMBER</p><small>{isJa ? "記憶する" : "기억하다"}</small></div>
 
       <section className="learned section warmBand"><p className="eyebrow">WHAT I LEARNED</p><h2>THINGS I LEARNED<br />THE HARD WAY.</h2><div className="lessonGrid">
         <Lesson n="01" title="BUILD FOR PEOPLE." text={isJa ? "開発者にとって便利なシステムより、実際の利用者が使いやすいシステムが重要だと学びました。" : "개발자에게 편한 시스템보다 실제 사용자가 편한 시스템이 더 중요하다는 것을 배웠습니다."} />
@@ -324,9 +355,27 @@ export function Portfolio() {
         <Lesson n="04" title="DEVELOPMENT ≠ CODING ONLY." text={isJa ? "開発、運営、ユーザー支援、コミュニケーション、文書化がそろって初めてサービスが動きます。" : "개발, 운영, 사용자 지원, 커뮤니케이션과 문서화가 함께해야 서비스가 움직입니다."} />
       </div></section>
 
-      <section className="memories section"><p className="eyebrow">VISUAL HIGHLIGHTS</p><h2>TOKYO<br />MEMORIES.</h2><div className="masonry">{[
-        ["TOKYO, SUMMER 2026", "/images/ai-tokyo-hero.jpg"], ["SYSTEM DEVELOPMENT", "/images/ai-system-development.jpg"], ["COMPANY VISIT", "/images/ai-company-visit.jpg"], ["AI & WELLNESS EXPO", "/images/ai-expo.jpg"], ["PROGRAM COMMUNICATION", "/images/ai-communication.jpg"]
-      ].map(([caption, src]) => <button key={caption} onClick={() => setLightbox({ caption, src })} aria-label={`${caption} ${isJa ? "を拡大表示" : "크게 보기"}`}><Photo label={caption} src={src} caption={caption} /></button>)}</div></section>
+      <section className="memoryOpening" aria-labelledby="memory-title">
+        <video autoPlay muted loop playsInline preload="metadata" poster="/images/memories/yokohama-night.jpg"><source src="/videos/tokyo-summer-01.mp4" type="video/mp4" /></video>
+        <div><p>OFF DUTY IN TOKYO · SUMMER 2026</p><h2 id="memory-title">WORK ENDED.<br /><span>SUMMER DIDN&apos;T.</span></h2><strong>{isJa ? "仕事の外で出会った東京も、このインターンシップを完成させた大切な時間でした。" : "업무가 끝난 뒤 만난 도쿄도, 이번 인턴십을 완성한 소중한 시간이었습니다."}</strong></div>
+      </section>
+
+      <section className="memoryStories section">
+        <div className="memoryLead"><div><p className="eyebrow">PERSONAL ACTIVITIES</p><h2>{isJa ? <>働いたあと、<br />夏を歩いた。</> : <>일한 뒤에는,<br />여름을 걸었다.</>}</h2></div><p>{isJa ? "横浜の観覧車、東京タワー、夏祭り、アニメーションの展示、神保町の古書店。観光地を回っただけではなく、日本の街と文化を自分の速度で知っていった記録です。" : "요코하마의 관람차, 도쿄타워, 여름 축제, 애니메이션 전시와 진보초의 오래된 서점. 관광지만 돌아본 것이 아니라 일본의 도시와 문화를 내 속도로 알아간 기록입니다."}</p></div>
+        <div className="memoryEditorial">
+          <button className="memoryWide" onClick={() => setLightbox({ caption: memoryPhotos[0][0], src: memoryPhotos[0][1] })}><Photo label={memoryPhotos[0][0]} src={memoryPhotos[0][1]} caption={memoryPhotos[0][0]} /></button>
+          <article><span>01 / YOKOHAMA</span><h3>{isJa ? "港の風と、観覧車の光。" : "항구의 바람과 관람차의 빛."}</h3><p>{isJa ? "日が沈んだあと、横浜の水面に街の色が映りました。短い夜の散歩が、忙しかった一日の余白になりました。" : "해가 진 뒤 요코하마의 수면에 도시의 색이 비쳤습니다. 짧은 밤 산책이 바빴던 하루에 여백을 만들어 주었습니다."}</p></article>
+          <button className="memoryPortrait" onClick={() => setLightbox({ caption: memoryPhotos[1][0], src: memoryPhotos[1][1] })}><Photo label={memoryPhotos[1][0]} src={memoryPhotos[1][1]} caption={memoryPhotos[1][0]} /></button>
+          <article><span>02 / TOKYO CULTURE</span><h3>{isJa ? "夏の物語を、東京で見る。" : "여름의 이야기를 도쿄에서 보다."}</h3><p>{isJa ? "『時をかける少女』の展示と神保町の古書店を歩き、映画や本が街の記憶として残る方法を見ました。" : "〈시간을 달리는 소녀〉 전시와 진보초의 고서점을 걸으며 영화와 책이 도시의 기억으로 남는 방식을 보았습니다."}</p></article>
+          <button className="memoryCulture" onClick={() => setLightbox({ caption: memoryPhotos[7][0], src: memoryPhotos[7][1] })}><Photo label={memoryPhotos[7][0]} src={memoryPhotos[7][1]} caption={memoryPhotos[7][0]} /></button>
+        </div>
+      </section>
+
+      <section className="summerFilms section colorBand"><div className="sectionHeading"><div><p className="eyebrow">SUMMER IN MOTION</p><h2>{isJa ? <>写真の間に残った、<br />東京の動き。</> : <>사진 사이에 남은,<br />도쿄의 움직임.</>}</h2></div><p>{isJa ? "音と動きまで残した3つの短い記録" : "소리와 움직임까지 남긴 세 개의 짧은 기록"}</p></div><div className="filmRail">
+        {["01", "02", "03"].map((n, index) => <figure key={n}><video controls playsInline preload="metadata" poster={memoryPhotos[[2, 4, 6][index]][1]}><source src={`/videos/tokyo-summer-${n}.mp4`} type="video/mp4" /></video><figcaption><span>FILM / {n}</span><strong>{isJa ? ["横浜の夜", "東京の夏景色", "街で見つけた瞬間"][index] : ["요코하마의 밤", "도쿄의 여름 풍경", "거리에서 발견한 순간"][index]}</strong></figcaption></figure>)}
+      </div></section>
+
+      <section className="memories section"><div className="sectionHeading"><div><p className="eyebrow">SUMMER PHOTO DIARY</p><h2>TOKYO<br />MEMORIES.</h2></div><p>{isJa ? "写真を選ぶと大きく見ることができます。" : "사진을 선택하면 크게 볼 수 있습니다."}</p></div><div className="memoryMosaic">{memoryPhotos.slice(2).map(([caption, src], index) => <button className={`memoryTile memoryTile${index + 1}`} key={caption} onClick={() => setLightbox({ caption, src })} aria-label={`${caption} ${isJa ? "を拡大表示" : "크게 보기"}`}><Photo label={caption} src={src} caption={caption} /></button>)}</div><div className="memoryInvitation"><p>{isJa ? "インターンシップは、仕事だけを学ぶ時間ではありませんでした。知らない街で働き、迷い、言葉を交わし、仕事のあとに自分だけの東京を見つける8週間でした。次の夏、この景色の続きを歩くのは、あなたかもしれません。" : "인턴십은 일만 배우는 시간이 아니었습니다. 낯선 도시에서 일하고, 길을 헤매고, 사람들과 말하며, 퇴근 후에는 나만의 도쿄를 발견한 8주였습니다. 다음 여름, 이 풍경의 다음 장면을 걷는 사람은 여러분일지도 모릅니다."}</p><strong>{isJa ? "次の夏を、東京で。" : "다음 여름을, 도쿄에서."}</strong></div></section>
 
       </div>
       </div>
